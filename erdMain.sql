@@ -1,5 +1,5 @@
-delete from Department; 
 delete from Employee; 
+delete from Department; 
 delete from Training; 
 delete from Employee_Type; 
 delete from Supervisor; 
@@ -24,7 +24,6 @@ drop table if exists Product;
 drop table if exists Joint_Customer_Product_Table;
 drop table if exists Product_Type;
 
-
 -- Personnel MGMT Section
 
 -- Department Section
@@ -36,7 +35,13 @@ create table `Department` (
 	`Number of Employees` integer not null
 );
 
-INSERT INTO Department VALUES (1, 'Accounting', 4000000, 30);
+
+create table `Training` (
+	`training_id` integer not null primary key autoincrement, 
+	`Start_Date` text not null, 
+	`End_Date` text not null, 
+	`Roster Capacity` text not null 
+);
 
 -- Employee Section
 
@@ -51,7 +56,6 @@ create table `Employee` (
 	foreign key(`training_id`) references `Training`(`training_id`)
 );
 
-INSERT INTO Employee VALUES (1, 'Sketchy Jeff', "Dunbar", "Aquisitions Associate", 1, 1);
 
 
 
@@ -70,13 +74,7 @@ create table `Supervisor` (
 
 -- Other Asset Section
 
-create table `Training` (
-	`training_id` integer not null primary key autoincrement, 
-	`Start_Date` text not null, 
-	`End_Date` text not null, 
-	`Roster Capacity` text not null 
-);
-insert into Training values(1, "1/20/17", "1/21/19", "1")
+
 
 create table `Computer` (
 	`computer_id` integer not null primary key autoincrement, 
@@ -136,6 +134,10 @@ create table `Product_Type` (
 	`name` text not null, 
 	`quantity` integer not null 
 );
+
+INSERT INTO Department VALUES (null, 'Accounting', 4000000, 30);
+insert into Training values(1, "1/20/17", "1/21/19", "1");
+INSERT INTO Employee VALUES (1, 'Sketchy Jeff', "Dunbar", "Aquisitions Associate", 1, 1);
 
 INSERT INTO Product_Type VALUES (null, 'Broom', 9);
 
